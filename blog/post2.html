@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Swift Singleton</title>
+    <title>Thread Safe Singleton on Swift 3.0</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -64,13 +64,13 @@
     <!-- /.container -->
 </nav><!-- Page Header -->
 <!-- Set your background image for this header on the line below. -->
-<header class="intro-header" style="background-image: url('img/backgroundPost2.jpg')">
+<header class="intro-header" style="background-image: url('img/backgroundPost1.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>Swift Singleton</h1>
-                    <h2 class="subheading">What is a singleton and how to implement it in Swift.</h2>
+                    <h1>Thread Safe Singleton on Swift 3.0</h1>
+                    <h2 class="subheading">How to create a singleton, but in a way that is safe to use it in a multi thread environment.</h2>
                     <span class="meta">Posted by <a href="#">Pablo Weremczuk</a></span>
                 </div>
             </div>
@@ -83,7 +83,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <p>Learn this stuff!!.</p>
+                    <p><p>Hi!, in this video we are going to create a design pattern case called <b>singleton</b>. A singleton is a class that can have only one instance. It's a really simple design pattern, but it is not done correctly, can generate some problems in multy-thread environments like servers or mobile applications. Hit play and take a look how is done in Swft!</p><p><center><iframe width="560" height="315" src="https://www.youtube.com/embed/ULvu3h4auwY" frameborder="0" allowfullscreen></iframe></center></p></p>
                 </div>
             </div>
         </div>
@@ -114,6 +114,14 @@
                                 </span>
                             </a>
                         </li>
+                        <li>
+                        <a href="https://www.linkedin.com/in/pabloweremczuk">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                        </a>
+                    </li>
                     </ul>
                     <p class="copyright text-muted">Copyright &copy; Pablo Weremczuk 2017</p>
                 </div>

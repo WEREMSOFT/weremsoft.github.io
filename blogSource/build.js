@@ -174,9 +174,22 @@ function copyAssets(source, destination){
 function addPosts(contentDictionary, postListTemplate){
 	var indexFilecontent = getIndexFileContent();
 	var postArray = getPostsArray(contentDictionary);
+	processPostsParagraph(postArray);
 	var stringToInjectInIndex = getStringToInjectOnIndex(postArray, postListTemplate);
     indexFilecontent = replace(indexFilecontent, '{{>>>iterate:posts:postMainPage.html}}', stringToInjectInIndex);
 	saveOnIndexFile(indexFilecontent);
+}
+/**
+ * Add paragraphs to the "post" property where the /n is
+ * @param arrPosts
+ */
+function processPostsParagraph(arrPosts){
+	for(var post of arrPosts){
+        post.body = replace(post.body, '<p>', '');
+        post.body = replace(post.body, '</p>', '');
+        post.body = replace(post.body, '\n', '<br>');
+        post.body = '<p>' + post.body + '</p>';
+    }
 }
 
 function getPostsArray(contentDictionary){
