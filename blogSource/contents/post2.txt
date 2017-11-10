@@ -1,5 +1,5 @@
 Thread Safe Singleton on Swift 3.0
-"How to create a singleton, but in a way that is safe to use it in a multi thread environment.
+How to create a singleton, but in a way that is safe to use it in a multi thread environment.
 Monday, May 8 of 2017
 img/backgroundPost1.jpg
 Hi!, in this video we are going to create a design pattern case called <b>singleton</b>. A singleton is a class that can have only one instance. It's a really simple design pattern, but it is not done correctly, can generate some problems in multy-thread environments like servers or mobile applications. Hit play and take a look how is done in Swft!

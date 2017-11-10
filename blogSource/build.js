@@ -7,28 +7,110 @@ const fs = require('fs');
 var ncp = require('ncp').ncp;
 var rimraf = require('rimraf');
 
+entryPoint();
 
+function entryPoint(){
+    console.log('deleting output folder');
+    try{
+        rimraf.sync('../blog');
+        console.log('output folder deleted');
+    }catch(e){
+        console.log('output folder does not exists');
+    }
 
-/**
- * Gets the JSON files to replace into de templates.
- * @returns {*}
- */
+    console.log('creating output folders');
+    fs.mkdirSync('../blog');
+    console.log('output folders created');
+    console.log('creating temp folders');
+    try{
+        fs.mkdirSync('./partials');
+        console.log('temp folders created');
+    }catch(e){
+        console.log('partials already exists');
+    }
+
+    var contentDictionary = getContentReplacementDictionary();
+    generateIntermediateTemplates(contentDictionary);
+    var replacementDictionary = getModulesReplacementDictionary();
+
+    replaceModulesInTemplates(replacementDictionary, '{{>', '}}', './partials/', './partials/');
+    replaceContentInTemplates(contentDictionary);
+    addPosts(contentDictionary, replacementDictionary['postMainPage']);
+
+    copyAssets('./assets', OUTPUT_FOLDER);
+    copyAssets('./partials', OUTPUT_FOLDER);
+}
+
 function getContentReplacementDictionary(){
 	var contentList = getFolderContentAsArray(CONTENT_DIR);
 	console.log(contentList);
-	var replacementDictionary = buildModuleIjectionString(contentList, CONTENT_DIR);
+	var replacementDictionary = buildModuleInjectionString(contentList, CONTENT_DIR);
 	return replacementDictionary;
 }
+
+function buildModuleInjectionString(fileNamesArray, dir){
+    console.log('Adding file contents to array...');
+    var replacementDictionary = [];
+    fileNamesArray.forEach(fileName => {
+        var fileType = fileName.split('.')[1];
+        var fileToRead = './'+ dir + '/' + fileName;
+        var contents = '';
+        switch(fileType){
+            case 'html':
+                contents = fs.readFileSync(fileToRead, 'utf8');
+                break;
+            default:
+                contents = readTextFile(fileToRead);
+                break;
+        }
+
+
+        replacementDictionary[fileName.split('.')[0]] = contents;
+    });
+    return replacementDictionary;
+}
+
+function readTextFile(pFilePath){
+    var returnValue = {title:'', subtitle: '', date: '', image: '', body: ''};
+    var lineByLine = require('n-readlines');
+    var liner = new lineByLine(pFilePath);
+
+    var line;
+    var lineNumber = 0;
+    var lineContents = '';
+    while (line = liner.next()) {
+        lineContents = line.toString('ascii');
+        switch(lineNumber){
+            case 0:
+                returnValue.title = lineContents;
+                break;
+            case 1:
+                returnValue.subtitle = lineContents;
+                break;
+            case 2:
+                returnValue.date = lineContents;
+            case 3:
+                returnValue.image = lineContents;
+                break;
+            default:
+                //if(lineContents.length == 0) lineContents = '<br>';
+                returnValue.body += '<p>' + lineContents + '</p>';
+        }
+        lineNumber++;
+    }
+    return returnValue;
+}
+
 /**
  * Generates the HTML files BEFORE being injected with data.
  * @param contentDictionary
  */
-function generateHTMLFiles(contentDictionary){
-	var stringToHandle = '';
+function generateIntermediateTemplates(contentDictionary){
+	var templatePatern = '';
     var options = { flag : 'w' };
     for(var key in contentDictionary){
-        stringToHandle = key.indexOf('post') == -1?MAIN_TEMPLATE:POST_TEMPLATE;
-        fs.writeFileSync('./partials/' + key + '.html', stringToHandle, options);
+        templatePatern = key.indexOf('post') == -1?MAIN_TEMPLATE:POST_TEMPLATE;
+        fs.writeFileSync('./partials/' + key + '.html', templatePatern, options);
     }
 
 }
@@ -39,9 +121,12 @@ function generateHTMLFiles(contentDictionary){
  */
 function getModulesReplacementDictionary(){
 	var modulesList = getFolderContentAsArray(TEMPLATES_DIR);
-	var replacementDictionary = buildModuleIjectionString(modulesList, TEMPLATES_DIR);
+	var replacementDictionary = buildModuleInjectionString(modulesList, TEMPLATES_DIR);
 	return replacementDictionary;
 }
+
+
+
 /**
  * gets the folder contents as an array. This array will be used to iterate all the files in the directory.
  * This function is used very often in the compilation.
@@ -60,36 +145,7 @@ function getFolderContentAsArray(folder){
 	return modulesSource;
 }
 
-/**
- * generates a dictionary, that will be used to inject data into the templates. This function is called after all the
- * template rendering and inclusion is donde.
- * @param fileNamesArray
- * @param dir
- * @returns {Array}
- */
-function buildModuleIjectionString(fileNamesArray, dir){
-	console.log('Adding file contents to array...');
-	var replacementDictionary = [];
-	fileNamesArray.forEach(fileName => {
-		var fileType = fileName.split('.')[1];
-        var fileToRead = './'+ dir + '/' + fileName;
-        var contents = '';
-		switch(fileType){
-			case 'html':
-                contents = fs.readFileSync(fileToRead, 'utf8');
-				break;
-            default:
-                contents = readTextFile(fileToRead);
-                break;
-        }
-
-
-			replacementDictionary[fileName.split('.')[0]] = contents;
-	});
-	return replacementDictionary;
-}
-
-function replaceModulesInFiles(replacementDictionary, tagStart, tagEnd, inputDir, outputDir){
+function replaceModulesInTemplates(replacementDictionary, tagStart, tagEnd, inputDir, outputDir){
 	var templatesFileList = getFolderContentAsArray(inputDir);
 	templatesFileList.forEach(file => {
 		if(file.split('.')[1] == 'html'){
@@ -104,27 +160,15 @@ function replaceModulesInFiles(replacementDictionary, tagStart, tagEnd, inputDir
 	});
 };
 
-/**
- * This function replaces all the data macros(denoted with {{>>) with the data.
- * @param replacementDictionary
- * @param tagStart
- * @param tagEnd
- * @param inputDir
- * @param outputDir
- */
-function replaceContentInFiles(replacementDictionary, tagStart, tagEnd, inputDir, outputDir){
-    var templatesFileList = getFolderContentAsArray(inputDir);
+function replaceContentInTemplates(replacementDictionary){
+    var templatesFileList = getFolderContentAsArray('./partials/');
     templatesFileList.forEach(file => {
         if(file.split('.')[1] == 'html'){
-            var stringToHandle = fs.readFileSync(inputDir + file, 'utf8');
+            var stringToHandle = fs.readFileSync('./partials/' + file, 'utf8');
             var wordsList = replacementDictionary[file.split('.')[0]];
-            stringToHandle = injectContentInString(stringToHandle, wordsList, tagStart, tagEnd);
-            // for(var key in wordsList){
-            // 	let stringToReplace = wordsList[key];
-            //     stringToHandle = replace(stringToHandle, tagStart + key + tagEnd, stringToReplace);
-            // }
+            stringToHandle = injectContentInString(stringToHandle, wordsList, '{{>>', '}}');
             var options = { flag : 'w' };
-            fs.writeFileSync(outputDir + file, stringToHandle, options);
+            fs.writeFileSync('./partials/' + file, stringToHandle, options);
         }
     });
 }
@@ -175,22 +219,9 @@ function copyAssets(source, destination){
 function addPosts(contentDictionary, postListTemplate){
 	var indexFilecontent = getIndexFileContent();
 	var postArray = getPostsArray(contentDictionary);
-	processPostsParagraph(postArray);
 	var stringToInjectInIndex = getStringToInjectOnIndex(postArray, postListTemplate);
     indexFilecontent = replace(indexFilecontent, '{{>>>iterate:posts:postMainPage.html}}', stringToInjectInIndex);
 	saveOnIndexFile(indexFilecontent);
-}
-/**
- * Add paragraphs to the "post" property where the /n is
- * @param arrPosts
- */
-function processPostsParagraph(arrPosts){
-	for(var post of arrPosts){
-        post.body = replace(post.body, '<p>', '');
-        post.body = replace(post.body, '</p>', '');
-        post.body = replace(post.body, '\n', '<br>');
-        post.body = '<p>' + post.body + '</p>';
-    }
 }
 
 function getPostsArray(contentDictionary){
@@ -231,65 +262,3 @@ function getIndexFileContent(){
 	returnValue = fs.readFileSync('./partials/index.html', 'utf8');
 	return returnValue;
 }
-
-console.log('deleting output folder');
-try{
-    rimraf.sync('../blog');
-    console.log('output folder deleted');
-}catch(e){
-	console.log('output folder does not exists');
-}
-
-function readTextFile(pFilePath){
-	var returnValue = {title:'', subtitle: '', date: '', image: '', body: ''};
-    var lineByLine = require('n-readlines');
-    var liner = new lineByLine(pFilePath);
-
-    var line;
-    var lineNumber = 0;
-    var lineContents = '';
-    while (line = liner.next()) {
-    	lineContents = line.toString('ascii');
-    	switch(lineNumber){
-			case 0:
-				returnValue.title = lineContents;
-				break;
-			case 1:
-				returnValue.subtitle = lineContents;
-				break;
-			case 2:
-				returnValue.date = lineContents;
-			case 3:
-				returnValue.image = lineContents;
-				break;
-			default:
-				//if(lineContents.length == 0) lineContents = '<br>';
-				returnValue.body += '<p>' + lineContents + '</p>';
-        }
-        lineNumber++;
-    }
-	return returnValue;
-}
-
-console.log('creating output folders');
-fs.mkdirSync('../blog');
-console.log('output folders created');
-console.log('creating temp folders');
-try{
-    fs.mkdirSync('./partials');
-    console.log('temp folders created');
-}catch(e){
-	console.log('partials already exists');
-}
-
-var contentDictionary = getContentReplacementDictionary();
-generateHTMLFiles(contentDictionary);
-var replacementDictionary = getModulesReplacementDictionary();
-
-replaceModulesInFiles(replacementDictionary, '{{>', '}}', './partials/', './partials/');
-replaceContentInFiles(contentDictionary, '{{>>', '}}', './partials/', './partials/');
-addPosts(contentDictionary, replacementDictionary['postMainPage']);
-
-copyAssets('./assets', OUTPUT_FOLDER);
-copyAssets('./partials', OUTPUT_FOLDER);
-
