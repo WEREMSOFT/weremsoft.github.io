@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "n-readlines": "^0.2.8",
     "ncp": "^2.0.0",
     "rimraf": "^2.6.1",
     "wrench": "^1.5.9"

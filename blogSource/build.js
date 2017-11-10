@@ -15,6 +15,7 @@ var rimraf = require('rimraf');
  */
 function getContentReplacementDictionary(){
 	var contentList = getFolderContentAsArray(CONTENT_DIR);
+	console.log(contentList);
 	var replacementDictionary = buildModuleIjectionString(contentList, CONTENT_DIR);
 	return replacementDictionary;
 }
@@ -77,8 +78,8 @@ function buildModuleIjectionString(fileNamesArray, dir){
 			case 'html':
                 contents = fs.readFileSync(fileToRead, 'utf8');
 				break;
-            case 'json':
-                contents = require(fileToRead);
+            default:
+                contents = readTextFile(fileToRead);
                 break;
         }
 
@@ -239,6 +240,36 @@ try{
 	console.log('output folder does not exists');
 }
 
+function readTextFile(pFilePath){
+	var returnValue = {title:'', subtitle: '', date: '', image: '', body: ''};
+    var lineByLine = require('n-readlines');
+    var liner = new lineByLine(pFilePath);
+
+    var line;
+    var lineNumber = 0;
+    var lineContents = '';
+    while (line = liner.next()) {
+    	lineContents = line.toString('ascii');
+    	switch(lineNumber){
+			case 0:
+				returnValue.title = lineContents;
+				break;
+			case 1:
+				returnValue.subtitle = lineContents;
+				break;
+			case 2:
+				returnValue.date = lineContents;
+			case 3:
+				returnValue.image = lineContents;
+				break;
+			default:
+				//if(lineContents.length == 0) lineContents = '<br>';
+				returnValue.body += '<p>' + lineContents + '</p>';
+        }
+        lineNumber++;
+    }
+	return returnValue;
+}
 
 console.log('creating output folders');
 fs.mkdirSync('../blog');

@@ -1,0 +1,11 @@
+Wellcome
+Wellcome to my new blog. Write is a muscle, you must exercise.
+Monday, May 8 of 2017
+img/backgroundPost1.jpg
+Hi! This is another intend to keep myself inteleccually active. Hope you enjoy it.
+
+Generally I code stuff, and I'm enjoy doing it as fast as I can.
+
+In the same way some youtube artist channels shows how they paint or do they stuff in a timelapse video, I plan to do it live, in realtime.
+
+I think is an interesting experiment, and maybe there are some cool code snipets we can use in the future.In the other hand, I travel arround the world working in projects with AngularJS, NodeJS and a lot of mobile related technologies, sometimes I'll write about how we overcome some technical problem, so you can learn some lifesaver tip ir sill. Also, there are usefull notes for my future self.That's it for now, lets get it started.
