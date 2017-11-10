@@ -94,7 +94,6 @@ function readTextFile(pFilePath){
                 returnValue.image = lineContents;
                 break;
             default:
-                //if(lineContents.length == 0) lineContents = '<br>';
                 returnValue.body += '<p>' + lineContents + '</p>';
         }
         lineNumber++;
