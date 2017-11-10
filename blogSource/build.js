@@ -21,6 +21,7 @@ function entryPoint(){
     console.log('creating output folders');
     fs.mkdirSync('../blog');
     console.log('output folders created');
+
     console.log('creating temp folders');
     try{
         fs.mkdirSync('./partials');
@@ -152,7 +153,7 @@ function replaceModulesInTemplates(replacementDictionary, tagStart, tagEnd, inpu
 			var stringToHandle = fs.readFileSync(inputDir + file, 'utf8');
 			for(var key in replacementDictionary){
 				let stringToReplace = replacementDictionary[key];
-				stringToHandle = replace(stringToHandle, tagStart + key + tagEnd, stringToReplace);
+				stringToHandle = replaceNoRegex(stringToHandle, tagStart + key + tagEnd, stringToReplace);
 			}
 			var options = { flag : 'w' };
     		fs.writeFileSync(outputDir + file, stringToHandle, options);
@@ -179,7 +180,7 @@ function injectContentInString(stringToInject, dataToBeInjected, tagStart, tagEn
 
     for(var key in dataToBeInjected){
         let stringToReplace = dataToBeInjected[key];
-        stringToInject = replace(stringToInject, tagStart + key + tagEnd, stringToReplace);
+        stringToInject = replaceNoRegex(stringToInject, tagStart + key + tagEnd, stringToReplace);
     }
 	return stringToInject;
 }
@@ -190,7 +191,7 @@ function injectContentInString(stringToInject, dataToBeInjected, tagStart, tagEn
  * @param stringToReplace
  * @returns {string}
  */
-function replace(stringSource, stringToSearch, stringToReplace){
+function replaceNoRegex(stringSource, stringToSearch, stringToReplace){
     stringSource = stringSource.split(stringToSearch).join(stringToReplace);
 	return stringSource;
 }
@@ -220,7 +221,7 @@ function addPosts(contentDictionary, postListTemplate){
 	var indexFilecontent = getIndexFileContent();
 	var postArray = getPostsArray(contentDictionary);
 	var stringToInjectInIndex = getStringToInjectOnIndex(postArray, postListTemplate);
-    indexFilecontent = replace(indexFilecontent, '{{>>>iterate:posts:postMainPage.html}}', stringToInjectInIndex);
+    indexFilecontent = replaceNoRegex(indexFilecontent, '{{>>>iterate:posts:postMainPage.html}}', stringToInjectInIndex);
 	saveOnIndexFile(indexFilecontent);
 }
 
@@ -244,7 +245,7 @@ function getStringToInjectOnIndex(postArray, postListTemplate){
 	var i = postArray.length;
 	while(--i >= 0){
         var partial = injectContentInString(postListTemplate, postArray[i], '{{>>', '}}');
-        partial = replace(partial, '{{>>#href}}', 'post' + (i + 1) + '.html');
+        partial = replaceNoRegex(partial, '{{>>#href}}', 'post' + (i + 1) + '.html');
         returnValue += injectContentInString(partial, postArray[i], '{{>>', '}}');
     }
 	return returnValue;
