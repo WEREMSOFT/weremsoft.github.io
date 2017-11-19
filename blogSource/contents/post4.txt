@@ -7,4 +7,10 @@ In this video I show how to create your own blog hosted on github. It uses a tem
 
 <center><iframe width="560" height="315" src="https://www.youtube.com/embed/PenkzgfuFDs" frameborder="0" allowfullscreen></iframe></center>
 
+Clone the project here:
+https://github.com/WEREMSOFT/weremsoft.github.io
+
+Bootstrap templates here:
+https://startbootstrap.com/template-categories/all/
+
 
