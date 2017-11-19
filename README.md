@@ -23,7 +23,7 @@ Monday, May 8 of 2017
 img/backgroundPost1.jpg
 Hi! This is another intend to keep myself inteleccually active. Hope you enjoy it.
 
-Generally I code stuff, and I'm enjoy doing it as fast as I can...
+Generally I code stuff...
 
 ```
 
@@ -39,3 +39,8 @@ Remember to run "npm install" INSIDE blogsource folder (you need node.js install
 
 Run "node build" and all the blog will compile the files, and compy the css, js and images to the "blog" source.
 
+Commit and push and it's donde (it can take some minutes to github to reflect the changes on your website)
+
+You can see a live demostration in this video.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PenkzgfuFDs" frameborder="0" allowfullscreen></iframe>
