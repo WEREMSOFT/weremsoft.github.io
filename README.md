@@ -43,5 +43,5 @@ Commit and push and it's donde (it can take some minutes to github to reflect th
 
 You can see a live demostration in this video.
 
-<iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+
 [![HOW TO USE THE BLOG!](http://img.youtube.com/vi/PenkzgfuFDs/0.jpg)](https://www.youtube.com/embed/PenkzgfuFDs)
