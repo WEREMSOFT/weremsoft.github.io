@@ -8,10 +8,26 @@ The blog code is in blogSource folder. You add content creating entries in the "
 
 Every .txt file in the blogsource/content folder must have the following information based on the lines:
 
-* 1st line must have the title of the entry.
-* 2nd line must have the date
-* 3rd line must have the image url of the header of the blog entry
-* 4th line and beyond is the rest of the post. Every new line will be enclosed in a <p></p> tags. You can include any kind of html code there. Youtube viedeos even javascript.
+* 1st line must have the title of the entry(catch phrase or pun to call the attention of the reader).
+* 2nd line must be the Subtitle of the post(what's the post is about?)
+* 3rd line must have the date
+* 4th line must have the image url of the header of the blog entry
+* 5th line and beyond is the rest of the post. Every new line will be enclosed in a <p></p> tags. You can include any kind of html code there. Youtube viedeos even javascript.
+
+### Example
+
+---
+Wellcome
+Wellcome to my new blog. Write is a muscle, you must exercise.
+Monday, May 8 of 2017
+img/backgroundPost1.jpg
+Hi! This is another intend to keep myself inteleccually active. Hope you enjoy it.
+
+Generally I code stuff, and I'm enjoy doing it as fast as I can...
+
+---
+
+
 
 you MUST have the index.txt file with the moto of the blog. In my case is "I code stuff".
 
