@@ -16,7 +16,7 @@ Every .txt file in the blogsource/content folder must have the following informa
 
 ### Example
 
----
+'''javascript
 Wellcome
 Wellcome to my new blog. Write is a muscle, you must exercise.
 Monday, May 8 of 2017
