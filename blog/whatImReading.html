@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Personal Static Blog Source Code</title>
+    <title>Focus: Being productive while creating quality stuff</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -42,7 +42,7 @@
                 <span class="sr-only">Toggle navigation</span>
                 Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="../index.html">Home Site</a>
+            <a class="navbar-brand" href="index.html">Home Site</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -62,34 +62,26 @@
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
-</nav><!-- Page Header -->
-<!-- Set your background image for this header on the line below. -->
-<header class="intro-header" style="background-image: url('img/backgroundPost2.jpg')">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <h1>Personal Static Blog Source Code</h1>
-                    <h2 class="subheading">How to host your personal blog on GitHub.</h2>
-                    <span class="meta">Posted by <a href="#">Pablo Weremczuk</a></span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<!-- Post Content -->
-    <article>
+</nav> <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('img/Praha.jpg')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <p><p><b></b></p><p><b>I</b>n this video I show how to create your own blog hosted on github. It uses a template engine I created for this purpose.</p><p><b></b></p><p><center><iframe width="560" height="315" src="https://www.youtube.com/embed/PenkzgfuFDs" frameborder="0" allowfullscreen></iframe></center></p><p><b></b></p><p><b>C</b>lone the project here:</p><p><b>h</b>ttps://github.com/WEREMSOFT/weremsoft.github.io</p><p><b></b></p><p><b>B</b>ootstrap templates here:</p><p><b>h</b>ttps://startbootstrap.com/template-categories/all/</p><p><b></b></p><p><b></b></p></p>
+                    <div class="site-heading">
+                        <h1>Pablo Weremczuk's<br>Blog</h1>
+                        <hr class="small">
+                        <span class="subheading">Focus: Being productive while creating quality stuff</span>
+                    </div>
                 </div>
             </div>
         </div>
+    </header>
 
-    </article>
-
+    <!-- Main Content -->
+    <div class="container">
+        {{>>>iterate:posts:postMainPage.html}}
+    </div>
     <hr>
 
     <!-- Footer -->
