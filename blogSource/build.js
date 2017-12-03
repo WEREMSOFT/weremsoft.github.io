@@ -19,6 +19,14 @@ function entryPoint() {
         console.log('output folder does not exists');
     }
 
+    console.log('deleting partials folder');
+    try {
+        rimraf.sync('./partials');
+        console.log('partials folder deleted');
+    } catch (e) {
+        console.log('partials folder does not exists');
+    }
+
     console.log('creating output folders');
     fs.mkdirSync('../blog');
     console.log('output folders created');
