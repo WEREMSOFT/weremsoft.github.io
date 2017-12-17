@@ -14,6 +14,10 @@ This is an amazing book that compiles all that is wrong in the companies nowaday
 Another amazing book. Teachs IOS programming with well explained tutorials. At the end of every chapter you end up with a working app like the ones that you need to build to apply for a job(<a href="https://github.com/inaka/iOS-exercises" target="_new">example</a>).
 Very well writen, the code doesn't have any error, everyting is explained at the right level of detail. Not too much, not to little. I think is the best book out there for people that want to do the transition from web development to IOS development.
 
+<h2>Swift Programming: The Big Nerd Ranch Guide</h2>
+
+It's an easy to read book, but is very basic for my taste. You can totally skip the first chapters.
+
 <h2>The Algorithm Design Manual</h2>
 
 Super technical book, I start reading it after I was rejected from my interview at google. It shows algorithms and it's implementations. It explains a lot, but it's really hard to understand. It's one of those books that you need to code to get it. I don't know if some day will have the time to finish it.
