@@ -5,6 +5,20 @@ img/WhatImReadingBackground.jpg
 
 Here I will compile a list of the books I am reading. Some take longer than others and I usually read several at the same time.
 
+<h1>Blogs</h1>
+
+<h2>kate{mats}</h2>
+
+An amazing blog that make a really nice work talking about the cultural sides of engineering.
+
+<a href="http://katemats.com/leadership/">link</a>
+
+<h2>kitchensoap</h2>
+
+Another blog with really interesting topics about the human side of being a computer engineer.
+
+<a href="https://www.kitchensoap.com">link</a>
+
 <h2>2D Apple Games by Tutorials</h2>
 
 2D games are all about show sprites, move them, listen the user actions and playing sounds. This games shows that and also the problems that you can face working on native-2D-Games for IOS. The images needed to work in the game, are hidden deep in the prolog(not near the first tutorial, where you expect to find a link).
