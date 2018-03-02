@@ -19,6 +19,8 @@ Another blog with really interesting topics about the human side of being a comp
 
 <a href="https://www.kitchensoap.com">link</a>
 
+<h1>Books</h1>
+
 <h2>2D Apple Games by Tutorials</h2>
 
 2D games are all about show sprites, move them, listen the user actions and playing sounds. This games shows that and also the problems that you can face working on native-2D-Games for IOS. The images needed to work in the game, are hidden deep in the prolog(not near the first tutorial, where you expect to find a link).
