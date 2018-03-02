@@ -11,44 +11,73 @@ var encoding = require('encoding');
 entryPoint();
 
 function entryPoint() {
-    console.log('deleting output folder');
-    try {
-        rimraf.sync('../blog');
-        console.log('output folder deleted');
-    } catch (e) {
-        console.log('output folder does not exists');
-    }
+    deleteOutFolder();
+    deletePartialsFolder();
+    createOutputFolder();
+    createTempFolder();
 
-    console.log('deleting partials folder');
-    try {
-        rimraf.sync('./partials');
-        console.log('partials folder deleted');
-    } catch (e) {
-        console.log('partials folder does not exists');
-    }
+    var { replacementDictionary, contentDictionary } = buildContentAndReplacementDictionaries();
 
-    console.log('creating output folders');
-    fs.mkdirSync('../blog');
-    console.log('output folders created');
+    replaceInTemplates(replacementDictionary, contentDictionary);
+    addPosts(contentDictionary, replacementDictionary['postMainPage']);
 
+    copyPartialsAndAssetsToOutputFolder();
+}
+
+function copyPartialsAndAssetsToOutputFolder() {
+    copyAssets('./assets', OUTPUT_FOLDER);
+    copyAssets('./partials', OUTPUT_FOLDER);
+}
+
+function replaceInTemplates(replacementDictionary, contentDictionary) {
+    replaceModulesInTemplates(replacementDictionary, '{{>', '}}', './partials/', './partials/');
+    replaceContentInTemplates(contentDictionary);
+}
+
+function buildContentAndReplacementDictionaries() {
+    var contentDictionary = getContentReplacementDictionary();
+    generateIntermediateTemplates(contentDictionary);
+    var replacementDictionary = getModulesReplacementDictionary();
+    return { replacementDictionary, contentDictionary };
+}
+
+function createTempFolder() {
     console.log('creating temp folders');
     try {
         fs.mkdirSync('./partials');
         console.log('temp folders created');
-    } catch (e) {
+    }
+    catch (e) {
         console.log('partials already exists');
     }
+}
 
-    var contentDictionary = getContentReplacementDictionary();
-    generateIntermediateTemplates(contentDictionary);
-    var replacementDictionary = getModulesReplacementDictionary();
+function createOutputFolder() {
+    console.log('creating output folders');
+    fs.mkdirSync('../blog');
+    console.log('output folders created');
+}
 
-    replaceModulesInTemplates(replacementDictionary, '{{>', '}}', './partials/', './partials/');
-    replaceContentInTemplates(contentDictionary);
-    addPosts(contentDictionary, replacementDictionary['postMainPage']);
+function deletePartialsFolder() {
+    console.log('deleting partials folder');
+    try {
+        rimraf.sync('./partials');
+        console.log('partials folder deleted');
+    }
+    catch (e) {
+        console.log('partials folder does not exists');
+    }
+}
 
-    copyAssets('./assets', OUTPUT_FOLDER);
-    copyAssets('./partials', OUTPUT_FOLDER);
+function deleteOutFolder() {
+    console.log('deleting output folder');
+    try {
+        rimraf.sync('../blog');
+        console.log('output folder deleted');
+    }
+    catch (e) {
+        console.log('output folder does not exists');
+    }
 }
 
 function getContentReplacementDictionary() {
