@@ -150,3 +150,13 @@ a:hover {
 .post-content {
     margin-bottom: 30px
 }
+
+.site-nav {
+    float: right;
+    line-height: 56px;
+}
+
+.site-nav .page-link {
+    color: #d8dee7;
+    line-height: 1.5;
+}

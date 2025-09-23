@@ -1,0 +1,5 @@
+2025-09-25
+Reflexiones sobre el desarrollo de videojuegos
+Una mirada a los desafíos y recompensas de crear juegos.
+<p>Crear videojuegos es una de las formas más complejas y gratificantes de la programación.</p>
+<p>Combina arte, narrativa y una profunda lógica de programación para crear experiencias interactivas.</p>

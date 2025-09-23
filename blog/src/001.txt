@@ -1,0 +1,5 @@
+2025-09-23
+Mi primer post (actualizado)
+Este es un resumen que aparecerá en el índice del blog.
+<p>Este es el contenido completo del artículo.</p>
+<p>Como puedes ver, ya no es necesario incluir los archivos de cabecera y pie de página, el script se encarga de todo.</p>
