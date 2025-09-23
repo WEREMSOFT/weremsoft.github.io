@@ -1,3 +1,0 @@
-2025-08-17
-This site have very good advice on programming. I'll say I agree with most of it so far. 
-Here is one article, but there are may very good ones. <a href="https://www.seangoedecke.com/good-system-design/">Everything I know about good system design</a>.
