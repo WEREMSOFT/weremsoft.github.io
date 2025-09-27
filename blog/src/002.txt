@@ -1,5 +1,0 @@
-2025-09-24
-Un segundo post sobre tecnología
-Explorando las últimas tendencias en el desarrollo de software.
-<p>El mundo del desarrollo de software está en constante evolución.</p>
-<p>Nuevos frameworks, lenguajes y paradigmas surgen cada año, y es importante para los desarrolladores mantenerse actualizados.</p>

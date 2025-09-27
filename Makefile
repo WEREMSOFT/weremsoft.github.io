@@ -34,7 +34,7 @@ $(POSTS_DIR)/%.html: $(SRC_DIR)/%.txt
 	cat layout/header.html.c > $@ && \
 	printf "<h1>%s</h1>\n" "$${TITLE}" >> $@ && \
 	printf "<p><em>%s</em></p>\n" "$${DATE}" >> $@ && \
-	printf "%s\n" "$${BODY}" >> $@ && \
+	echo "$${BODY}" | while IFS= read -r line; do [ -n "$$line" ] && printf "<p>%s</p>\n" "$$line"; done >> $@ && \
 	cat layout/footer.html.c >> $@
 
 clean:

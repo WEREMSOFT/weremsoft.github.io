@@ -22,10 +22,42 @@
     <div class="wrapper">
       <article class="post">
         <div class="post-content">
-<h1>Mi primer post (actualizado)</h1>
+<h1>The Poor Man’s LLM(Part I)</h1>
 <p><em>2025-09-23</em></p>
-<p>Este es el contenido completo del artículo.</p>
-<p>Como puedes ver, ya no es necesario incluir los archivos de cabecera y pie de página, el script se encarga de todo.</p>
+<p>I’ve been wanting to write about a project I started to learn about AI, but I always ended up abandoning it along the way. Writing about something that excites you is hard when you’re not used to writing at all.</p>
+<p>For me, the main problem is that when I try to talk about something I’m passionate about, I trip over my own words—I want to say too many things at once. That’s exactly what happens with this project. So I’ll try a different strategy: writing in short sentences, almost like bullet points. Maybe that way I can organize my thoughts better.</p>
+<p>In fact, I feel a bit like an LLM: the longer the sentence, the more I branch out into tangents. So let’s stick with short sentences and see how it goes.</p>
+<p><h2>Starting the Project</h2></p>
+<p>It all began when I decided I wanted to learn how LLMs work. And I wanted to do it without relying on external libraries. I believe that if you depend too much on other people’s code, you miss out on gaining a deeper understanding of the subject you’re studying.</p>
+<p>Of course, I wasn’t going to write everything in assembly. But I did set myself a restriction: I would use C89 and nothing beyond the standard library. That was it.</p>
+<p>This wasn’t entirely new to me, since most of my weekend projects are written in C89 under Linux anyway. The real challenge was figuring out how to learn the concepts. I could have read about neural networks, backpropagation, and all that, but honestly, I’m not a good reader. I don’t have the patience for academic papers.</p>
+<p>So instead, I used an approach that’s worked well for me before: I asked myself,</p>
+<p>“If I were stranded on a desert island, with electricity but no internet, and I had to implement an LLM, how would I do it?”</p>
+<p>It may sound odd, but the idea was this: if I didn’t have access to all the accumulated knowledge of modern civilization about LLMs, what could I build on my own, with only the knowledge I already had? That’s how the project “The Poor Man’s LLM” was born.</p>
+<p><h2>My Initial Understanding of LLMs</h2></p>
+<p>At the time, this was the extent of what I knew:</p>
+<p> • They predict the next word in a sentence based on the words that came before.</p>
+<p> • They build a statistical model from written material—like books—to decide what word should come next.</p>
+<p> • The initial words are provided by a human.</p>
+<p>So I thought: well, let’s build a tree. Each node would represent a word, and each child would be one of the possible words that followed in the training book.</p>
+<p><h2>Bringing Probability Into the Picture</h2></p>
+<p>Of course, there was one important detail I couldn’t ignore: not all next words have the same probability.</p>
+<p>For example, given the word “la” (“the” in Spanish), some continuations are far more likely than others. “Casa” (“house”) is a much more probable continuation than “hacha” (“axe”). In fact, “la casa” is far more likely to appear in a book than “la hacha”, which might even have a probability of zero.</p>
+<p>This reminds us that probabilities always involve randomness. When choosing the next word in the tree, we “roll a die.” The result from the random number generator needs to reflect the actual probabilities of the possible words.</p>
+<p>There are sophisticated ways to do this, such as storing explicit probabilities in the data structure. But I wasn’t interested in adding that complexity. Instead, I took a simpler approach: repeat words in the tree as many times as they appear in the text.</p>
+<p>For example, if the word “de” (“of”) appears 100 times after “casa” (“house”) in the training book, then in my tree the node “casa” has 100 children labeled “de”. It may sound lazy, but it works.</p>
+<p>So if “casa” has 400 children in total, I just generate a random number between 0 and 399. That index corresponds to one of the children, and that determines the next word. It’s crude but effective—and good enough for me.</p>
+<p><h2>Reinventing the Wheel</h2></p>
+<p>One of the things I like about this “desert island” approach is that you end up rediscovering algorithms that other people invented long before you.</p>
+<p>For instance, this sentence-generation algorithm, based on choosing words from previous context, already has a name: Markov chains. Invented by a Russian mathematician, Andrey Markov.</p>
+<p>It makes you think: “If I had figured this out 100 years ago, maybe the algorithm would be named after me instead.”</p>
+<p>Of course, that would only have been possible if I had access to the same education, time, and social environment that Markov had. Just like people say: “If Steve Jobs had been born in Mexico, he might have been a gardener instead of Apple’s CEO.” But that’s a discussion for another day.</p>
+<p><h2>A Plot Twist</h2></p>
+<p>There’s one last twist about the data structure. Sometimes, a word can follow itself.</p>
+<p>For example, the word “esto” (“this”) can often be followed by another “esto”. Or a word can reappear at a different “distance.” In the Spanish phrase “de esto y de aquello” (“of this and that”), the word “de” shows up twice in a short span.</p>
+<p>This cyclical behavior means the structure isn’t really a tree at all—it’s a graph. But things aren’t that simple either, because for processing we still need that graph in an array-based representation.</p>
+<p>This kind of structure has a name: it’s called a Directed Acyclic Graph, or DAG.</p>
+<p>But that’s a story for my next post.</p>
         </div>
       </article>
     </div>
