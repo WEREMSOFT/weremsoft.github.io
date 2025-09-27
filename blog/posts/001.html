@@ -42,11 +42,11 @@
 <p>So I thought: well, let’s build a tree. Each node would represent a word, and each child would be one of the possible words that followed in the training book.</p>
 <p><h2>Bringing Probability Into the Picture</h2></p>
 <p>Of course, there was one important detail I couldn’t ignore: not all next words have the same probability.</p>
-<p>For example, given the word “la” (“the” in Spanish), some continuations are far more likely than others. “Casa” (“house”) is a much more probable continuation than “hacha” (“axe”). In fact, “la casa” is far more likely to appear in a book than “la hacha”, which might even have a probability of zero.</p>
+<p>For example, given the word “the”, some continuations are far more likely than others. “house” is a much more probable continuation than “Japan”. In fact, “the house” is far more likely to appear in a book than “the Japan”, which might even have a probability of zero. In which case will not be present as child.</p>
 <p>This reminds us that probabilities always involve randomness. When choosing the next word in the tree, we “roll a die.” The result from the random number generator needs to reflect the actual probabilities of the possible words.</p>
 <p>There are sophisticated ways to do this, such as storing explicit probabilities in the data structure. But I wasn’t interested in adding that complexity. Instead, I took a simpler approach: repeat words in the tree as many times as they appear in the text.</p>
-<p>For example, if the word “de” (“of”) appears 100 times after “casa” (“house”) in the training book, then in my tree the node “casa” has 100 children labeled “de”. It may sound lazy, but it works.</p>
-<p>So if “casa” has 400 children in total, I just generate a random number between 0 and 399. That index corresponds to one of the children, and that determines the next word. It’s crude but effective—and good enough for me.</p>
+<p>For example, if the word “of” appears 100 times after “house” in the training book, then in my tree the node “house” has 100 children labeled “of”. It may sound lazy, but it works.</p>
+<p>So if “house” has 400 children in total(100 of them is "of"), I just generate a random number between 0 and 399. That index corresponds to one of the children, and that determines the next word. The probabilty will take care of itself. It’s crude but effective—and good enough for me.</p>
 <p><h2>Reinventing the Wheel</h2></p>
 <p>One of the things I like about this “desert island” approach is that you end up rediscovering algorithms that other people invented long before you.</p>
 <p>For instance, this sentence-generation algorithm, based on choosing words from previous context, already has a name: Markov chains. Invented by a Russian mathematician, Andrey Markov.</p>
@@ -54,8 +54,8 @@
 <p>Of course, that would only have been possible if I had access to the same education, time, and social environment that Markov had. Just like people say: “If Steve Jobs had been born in Mexico, he might have been a gardener instead of Apple’s CEO.” But that’s a discussion for another day.</p>
 <p><h2>A Plot Twist</h2></p>
 <p>There’s one last twist about the data structure. Sometimes, a word can follow itself.</p>
-<p>For example, the word “esto” (“this”) can often be followed by another “esto”. Or a word can reappear at a different “distance.” In the Spanish phrase “de esto y de aquello” (“of this and that”), the word “de” shows up twice in a short span.</p>
-<p>This cyclical behavior means the structure isn’t really a tree at all—it’s a graph. But things aren’t that simple either, because for processing we still need that graph in an array-based representation.</p>
+<p>For example, the word “etc,” can often be followed by another “etc,”. Or a word can reappear at a different “distance”. In the phrase “of this and of that”, the word “of” shows up twice in a short span.</p>
+<p>This cyclical behavior means the structure isn’t really a tree at all—it’s a graph. But things aren’t that simple either, because for processing we still need that graph represented as an array.</p>
 <p>This kind of structure has a name: it’s called a Directed Acyclic Graph, or DAG.</p>
 <p>But that’s a story for my next post.</p>
         </div>
