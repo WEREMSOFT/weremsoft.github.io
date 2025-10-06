@@ -1,0 +1,25 @@
+2025-09-27
+Why Tokens?
+Why do we talk about tokens when we talk about LLMs? What is this new unit of measurement in the era of Artificial Intelligence and large language models?
+
+Why do we talk about tokens and not words? The answer lies in the way the LLM needs to organize information. When the LLM processes, say, a book, it doesn't process it with the same grammatical rules we apply when we read a book. The LLM doesn't see words or syllables; rather, it processes the text as a sequence of bytes. The way these bytes are grouped and repeated matters more than the way the words are organized, separated by spaces, commas, and question marks. What matters more is the way these sequences are repeated, the way they precede each other, and how often they precede each other.
+
+Let's suppose, for example, that we're trying to train an LLM, and our "training material" (also called a "corpus") consists of two words: 
+
+"playing played" 
+
+For us, this text consists of two words, but the LLM sees groups of characters that have the following form:
+
+"play" "ing" and "ed"
+
+The LLM sees two occurrences of the root "play," followed by two different endings: "ing" and "ed." Both have a 50% chance of appearing after the root. Now, if our text had four words:
+
+"playing played played played"
+
+The LLM sees the same thing: one root and two endings, but now "ed" has a 75% chance of appearing after the root, while "ing" has a 25% chance.
+
+This is a simplified but correct enough explanation, and the important point to note is that word chunks don't adhere to any spelling or grammar rules. We can extend this simplification a bit, making it just a little less simple, by saying that spaces are part of the repeated characters. In this case, "play" is one root, while " play" is another.
+
+At this point, we have this concept of a "fragment of information," which comes from a text source and is not a word, not a syllable, and does not depend on human grammatical rules to define its length or its beginning. This piece of information from a text is what is called a token.
+
+Other questions arise from this information, for example, why is a token used as a working unit in a LLM? Honestly, to me, it sounds a bit arbitrary, but right now, there doesn't seem to be anything better. It's impossible, I think, to measure how many watts of energy it takes to process and answer a question posed by a chatGPT user. Especially since these queries are distributed across multiple computers, cores, and GPUs, with load balancers, caches, and other unknown elements in between. If we only used CPUs, we could measure the cycles required for a given operation, even if that operation is distributed across multiple cores on the same CPU. But because of how GPUs are built, we can't measure the effort required to process a piece of code, as is possible with the latest generations of Intel processors.
