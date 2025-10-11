@@ -9,7 +9,7 @@
   <title>Blog</title>
   <meta name="description" content="Blog de Pablo Weremczuk">
 
-  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../../css/main.css">
 </head>
 
 <body>
@@ -20,24 +20,16 @@
   </header>
   <div class="page-content">
     <div class="wrapper">
-      <h1>Blog</h1>
-      <ul>
-<li>
-  <h3><a href="posts/003.html">Its Impossible to Write C89 Code</a></h3>
-  <small>2025-10-11</small>
-  <p>On why it is not possible to write portable code in C89</p>
-</li>
-<li>
-  <h3><a href="posts/002.html">Why Tokens?</a></h3>
-  <small>2025-09-27</small>
-  <p>Why do we talk about tokens when we talk about LLMs? What is this new unit of measurement in the era of Artificial Intelligence and large language models?</p>
-</li>
-<li>
-  <h3><a href="posts/001.html">The Poor Man’s LLM(Part I)</a></h3>
-  <small>2025-09-27</small>
-  <p>On how I created an LLM with only with the ANSI C standard library.</p>
-</li>
-      </ul>
+      <article class="post">
+        <div class="post-content">
+<h1>Its Impossible to Write C89 Code</h1>
+<p><em>2025-10-11</em></p>
+<p>I stumbled upon people in internet claiming that they write C89 code in modern computers. This can not be true. There are several reasons for that:</p>
+<p>1. C89 is not widly supported: C89 is not supported for all compilers. MSVC (the microsoft compiler) does not support C89, if somebodz claims that he or she writes C89 code and uses visual studio, chances is that the code is not 100% C89 code.</p>
+<p>2. C89 does not have support for long registers, if you want to use SIMDI or read the performance counters of the CPU, you can write inline assembly to read the registers, but you dont have types in C89 to read those results coming from the inlined assembly. Yout can write a struct that can handle the high part and the low part of the data, but then the juggling that you have to do to handle that struct in C89 kills the per formonce gain of using SIMI. Maybe there are very good C89 programmers that can do that, I just that I dont know any.</p>
+<p>I think that you can write code that is 80% c89 code, but then you have to rely on compiler extensios and extra code and you end up using C89 code to make your program portable but this turns out on covering your head and uncover your feet introducing inline assembly and compiler extensions.</p>
+        </div>
+      </article>
     </div>
   </div>
 
