@@ -1,0 +1,18 @@
+2025-10-13
+Information Density In Modern Media
+Maybe the reason why we are loosing our attention span is the low information density in modern content.
+
+People says we are loosing attention span, and that this is because of the way we consume media, that we are becoming less patient to consume information. I think that part of the problem resides in the density of information that we consume, or rather that is being crafted.
+Y was playing a role playing game, old school, with dungeon master dices of 20 faces and all, and I can tell you that every word in the story, that was happening in the Lovercraftian universe, had a purpose, every description of shapes, movement, sound, smell and color had purpose, there was not wasted words.
+Compare with a video on youtube, where you are trying to get a recipe for an european borsh spup. The video starts with an intro about where the soup was originated, and maybe a personal story of the content creator about how his relatives a emigrated from Europe and how they bring the recipe with them.
+Yout see, there is a lot of unnecesary information regarding the content we trying to get. We have to go trough a lot of irrelevant information, that includes some rant from the author, opinions and "word from our sponsors" and so on and so fotth. With all that disrespect from our time, is no surprise for me that the way we consume information become anoying and, overal, not enjoyable.
+There is a protocol to create videos, where you have to "tell a story". This was not like this before, if you want to tell a story, you tell a story, if you want to give practival information, you go to the point.
+Can you imagine if you have to read the instructions for the fire extinguisher because your house is on fire, and is a page that starts talking about the creation of the fire extinguisher and the official date where the first fire extinguisher was created?
+We are loosing our attention span beause we previously lost our patience with the so called content creadors.
+This is not exclusive of the youtube videos, it also happens with written internet. Sometimes happens naturally, lets say when you are in a forum like stackoverflow, and you are looking for help on a problem you are having. You will find, most of the time, a person with a problem similar to yours, other time, you will find a problem like yours, but the solution does not applies to the de tech stack you are using. So you have to read one or several posts and adapt the solution to your particular case. In this case, the information you need have some extras that you need to trim, change and adapt, but its the way people shares their knowledge. There is goodwill, purpose, and truth.
+
+But in other cases, like the example of the recipe, the extra as content is totally avoidable, and the reason is a combination of a totally wrong idea that we have to tell a story in our comunication task, and the other is that content need to have certain length in order to be able to host ads.
+Going back when I was trying to become and independent game developer, I made a fairly successfull game, won some prices in cash and all, but the problem was that the game was very small, around 300 kilobytes, so there were no loading time, the game loaded almost instantly, and the ads that usually where intended show when the game was loading, were imposible to add. This made the game to get less money for add revenue compared with other games.
+My point here is that the way informacion is monetized is toxic.
+Like mixing low quality ingredients on mass produced food make us sick, or fat,
+this low quality information manufacture, crafted to please a mythical creature called "the algorithm" is hurting us.
